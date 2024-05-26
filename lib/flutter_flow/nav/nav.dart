@@ -55,6 +55,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SearchPage',
           path: '/searchPage',
           builder: (context, params) => const SearchPageWidget(),
+        ),
+        FFRoute(
+          name: 'searchResultPage',
+          path: '/searchResultPage',
+          builder: (context, params) => const SearchResultPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

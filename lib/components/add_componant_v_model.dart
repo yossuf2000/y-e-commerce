@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'add_componant_copy_widget.dart' show AddComponantCopyWidget;
+import 'add_componant_v_widget.dart' show AddComponantVWidget;
 import 'package:flutter/material.dart';
 
-class AddComponantCopyModel extends FlutterFlowModel<AddComponantCopyWidget> {
+class AddComponantVModel extends FlutterFlowModel<AddComponantVWidget> {
   @override
   void initState(BuildContext context) {}
 

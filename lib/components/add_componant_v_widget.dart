@@ -1,18 +1,18 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'add_componant_copy_model.dart';
-export 'add_componant_copy_model.dart';
+import 'add_componant_v_model.dart';
+export 'add_componant_v_model.dart';
 
-class AddComponantCopyWidget extends StatefulWidget {
-  const AddComponantCopyWidget({super.key});
+class AddComponantVWidget extends StatefulWidget {
+  const AddComponantVWidget({super.key});
 
   @override
-  State<AddComponantCopyWidget> createState() => _AddComponantCopyWidgetState();
+  State<AddComponantVWidget> createState() => _AddComponantVWidgetState();
 }
 
-class _AddComponantCopyWidgetState extends State<AddComponantCopyWidget> {
-  late AddComponantCopyModel _model;
+class _AddComponantVWidgetState extends State<AddComponantVWidget> {
+  late AddComponantVModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -23,7 +23,7 @@ class _AddComponantCopyWidgetState extends State<AddComponantCopyWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddComponantCopyModel());
+    _model = createModel(context, () => AddComponantVModel());
   }
 
   @override
@@ -36,7 +36,7 @@ class _AddComponantCopyWidgetState extends State<AddComponantCopyWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 0.0, 10.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(7.5, 10.0, 7.5, 10.0),
       child: Container(
         width: 145.0,
         height: 190.0,

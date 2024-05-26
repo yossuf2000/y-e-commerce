@@ -1,4 +1,4 @@
-import '/components/add_componant_copy_widget.dart';
+import '/components/add_componant_v_widget.dart';
 import '/components/add_componant_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -9,11 +9,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for enterEmailText widget.
-  FocusNode? enterEmailTextFocusNode;
-  TextEditingController? enterEmailTextTextController;
+  // State field(s) for searchResultPage widget.
+  FocusNode? searchResultPageFocusNode;
+  TextEditingController? searchResultPageTextController;
   String? Function(BuildContext, String?)?
-      enterEmailTextTextControllerValidator;
+      searchResultPageTextControllerValidator;
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
@@ -26,37 +26,34 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late AddComponantModel addComponantModel2;
   // Model for addComponant component.
   late AddComponantModel addComponantModel3;
-  // Model for addComponantCopy component.
-  late AddComponantCopyModel addComponantCopyModel1;
-  // Model for addComponantCopy component.
-  late AddComponantCopyModel addComponantCopyModel2;
-  // Model for addComponantCopy component.
-  late AddComponantCopyModel addComponantCopyModel3;
+  // Model for addComponantV component.
+  late AddComponantVModel addComponantVModel1;
+  // Model for addComponantV component.
+  late AddComponantVModel addComponantVModel2;
+  // Model for addComponantV component.
+  late AddComponantVModel addComponantVModel3;
 
   @override
   void initState(BuildContext context) {
     addComponantModel1 = createModel(context, () => AddComponantModel());
     addComponantModel2 = createModel(context, () => AddComponantModel());
     addComponantModel3 = createModel(context, () => AddComponantModel());
-    addComponantCopyModel1 =
-        createModel(context, () => AddComponantCopyModel());
-    addComponantCopyModel2 =
-        createModel(context, () => AddComponantCopyModel());
-    addComponantCopyModel3 =
-        createModel(context, () => AddComponantCopyModel());
+    addComponantVModel1 = createModel(context, () => AddComponantVModel());
+    addComponantVModel2 = createModel(context, () => AddComponantVModel());
+    addComponantVModel3 = createModel(context, () => AddComponantVModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    enterEmailTextFocusNode?.dispose();
-    enterEmailTextTextController?.dispose();
+    searchResultPageFocusNode?.dispose();
+    searchResultPageTextController?.dispose();
 
     addComponantModel1.dispose();
     addComponantModel2.dispose();
     addComponantModel3.dispose();
-    addComponantCopyModel1.dispose();
-    addComponantCopyModel2.dispose();
-    addComponantCopyModel3.dispose();
+    addComponantVModel1.dispose();
+    addComponantVModel2.dispose();
+    addComponantVModel3.dispose();
   }
 }

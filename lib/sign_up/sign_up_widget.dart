@@ -113,7 +113,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 247.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 200.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -129,77 +129,26 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               children: [
                                 Container(
                                   width: 326.0,
-                                  height: 50.0,
+                                  height: 55.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  child: TextFormField(
-                                    controller:
-                                        _model.enterusernameTextTextController,
-                                    focusNode:
-                                        _model.enterusernameTextFocusNode,
-                                    autofocus: true,
-                                    autofillHints: const [AutofillHints.username],
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      alignLabelWithHint: false,
-                                      hintText: 'Username',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'DM Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      errorBorder: InputBorder.none,
-                                      focusedErrorBorder: InputBorder.none,
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 14.0, 0.0, 0.0),
-                                      prefixIcon: Icon(
-                                        Icons.person,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        size: 20.0,
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'DM Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    validator: _model
-                                        .enterusernameTextTextControllerValidator
-                                        .asValidator(context),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: Container(
-                                    width: 326.0,
-                                    height: 50.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 5.0),
                                     child: TextFormField(
-                                      controller:
-                                          _model.enterEmailTextTextController,
-                                      focusNode: _model.enterEmailTextFocusNode,
+                                      controller: _model
+                                          .enterusernameTextTextController,
+                                      focusNode:
+                                          _model.enterusernameTextFocusNode,
                                       autofocus: true,
-                                      autofillHints: const [AutofillHints.email],
+                                      autofillHints: const [AutofillHints.username],
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: false,
-                                        hintText: 'Email',
+                                        hintText: 'Username',
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .titleMedium
                                             .override(
@@ -215,9 +164,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         focusedErrorBorder: InputBorder.none,
                                         contentPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 14.0, 0.0, 0.0),
+                                                0.0, 11.0, 0.0, 0.0),
                                         prefixIcon: Icon(
-                                          Icons.mail_outline_outlined,
+                                          Icons.person,
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
                                           size: 20.0,
@@ -229,9 +178,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             fontFamily: 'DM Sans',
                                             letterSpacing: 0.0,
                                           ),
-                                      keyboardType: TextInputType.emailAddress,
                                       validator: _model
-                                          .enterEmailTextTextControllerValidator
+                                          .enterusernameTextTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -241,7 +189,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Container(
                                     width: 326.0,
-                                    height: 50.0,
+                                    height: 55.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -249,7 +197,71 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 5.0, 0.0),
+                                          0.0, 5.0, 0.0, 5.0),
+                                      child: TextFormField(
+                                        controller:
+                                            _model.enterEmailTextTextController,
+                                        focusNode:
+                                            _model.enterEmailTextFocusNode,
+                                        autofocus: true,
+                                        autofillHints: const [AutofillHints.email],
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: false,
+                                          hintText: 'Email',
+                                          hintStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'DM Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                letterSpacing: 0.0,
+                                              ),
+                                          enabledBorder: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          focusedErrorBorder: InputBorder.none,
+                                          contentPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 11.0, 0.0, 0.0),
+                                          prefixIcon: Icon(
+                                            Icons.mail_outline_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            size: 20.0,
+                                          ),
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .override(
+                                              fontFamily: 'DM Sans',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        validator: _model
+                                            .enterEmailTextTextControllerValidator
+                                            .asValidator(context),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: 326.0,
+                                    height: 55.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 5.0, 5.0, 5.0),
                                       child: TextFormField(
                                         controller: _model
                                             .enterPasswordTextTextController,
@@ -277,7 +289,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           focusedErrorBorder: InputBorder.none,
                                           contentPadding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 14.0, 0.0, 0.0),
+                                                  0.0, 11.0, 0.0, 0.0),
                                           prefixIcon: Icon(
                                             Icons.lock_outlined,
                                             color: FlutterFlowTheme.of(context)

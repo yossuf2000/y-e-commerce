@@ -1,4 +1,4 @@
-import '/components/add_componant_copy_widget.dart';
+import '/components/add_componant_v_widget.dart';
 import '/components/add_componant_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -26,8 +26,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
     _model = createModel(context, () => HomePageModel());
 
-    _model.enterEmailTextTextController ??= TextEditingController();
-    _model.enterEmailTextFocusNode ??= FocusNode();
+    _model.searchResultPageTextController ??= TextEditingController();
+    _model.searchResultPageFocusNode ??= FocusNode();
   }
 
   @override
@@ -55,7 +55,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               color: FlutterFlowTheme.of(context).primaryBackground,
             ),
             child: SingleChildScrollView(
-              primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -162,84 +161,117 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 30.0, 0.0, 0.0),
-                              child: Container(
-                                width: 326.0,
-                                height: 50.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: TextFormField(
-                                  controller:
-                                      _model.enterEmailTextTextController,
-                                  focusNode: _model.enterEmailTextFocusNode,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    alignLabelWithHint: false,
-                                    hintText: 'Search for headphone',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'DM Sans',
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    width: 326.0,
+                                    height: 50.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: TextFormField(
+                                      controller:
+                                          _model.searchResultPageTextController,
+                                      focusNode:
+                                          _model.searchResultPageFocusNode,
+                                      autofocus: false,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: false,
+                                        hintText: 'Search for headphone',
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'DM Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 14.0, 0.0, 0.0),
+                                        prefixIcon: Icon(
+                                          Icons.search,
                                           color: FlutterFlowTheme.of(context)
                                               .alternate,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
+                                          size: 20.0,
                                         ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    contentPadding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 14.0, 0.0, 0.0),
-                                    prefixIcon: Icon(
-                                      Icons.search,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      size: 20.0,
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily: 'DM Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      validator: _model
+                                          .searchResultPageTextControllerValidator
+                                          .asValidator(context),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: 'DM Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                  validator: _model
-                                      .enterEmailTextTextControllerValidator
-                                      .asValidator(context),
-                                ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'SearchPage',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.bottomToTop,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Container(
+                                      width: 326.0,
+                                      height: 50.0,
+                                      decoration: const BoxDecoration(),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -305,7 +337,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                             iconColor: const Color(0x00000000),
                                             iconSize: 18.0,
-                                            elevation: 4.0,
+                                            elevation: 2.0,
                                             borderRadius:
                                                 BorderRadius.circular(16.0),
                                           ),
@@ -349,6 +381,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               ListView(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 children: [
@@ -422,6 +455,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     0.0, 25.0, 0.0, 0.0),
                                 child: ListView(
                                   padding: EdgeInsets.zero,
+                                  primary: false,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   children: [
@@ -434,25 +468,22 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             wrapWithModel(
-                                              model:
-                                                  _model.addComponantCopyModel1,
+                                              model: _model.addComponantVModel1,
                                               updateCallback: () =>
                                                   setState(() {}),
-                                              child: const AddComponantCopyWidget(),
+                                              child: const AddComponantVWidget(),
                                             ),
                                             wrapWithModel(
-                                              model:
-                                                  _model.addComponantCopyModel2,
+                                              model: _model.addComponantVModel2,
                                               updateCallback: () =>
                                                   setState(() {}),
-                                              child: const AddComponantCopyWidget(),
+                                              child: const AddComponantVWidget(),
                                             ),
                                             wrapWithModel(
-                                              model:
-                                                  _model.addComponantCopyModel3,
+                                              model: _model.addComponantVModel3,
                                               updateCallback: () =>
                                                   setState(() {}),
-                                              child: const AddComponantCopyWidget(),
+                                              child: const AddComponantVWidget(),
                                             ),
                                           ],
                                         ),

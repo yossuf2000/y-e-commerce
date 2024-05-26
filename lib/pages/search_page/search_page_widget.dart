@@ -119,6 +119,12 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                         child: TextFormField(
                           controller: _model.enterEmailTextTextController,
                           focusNode: _model.enterEmailTextFocusNode,
+                          onFieldSubmitted: (_) async {
+                            if (Navigator.of(context).canPop()) {
+                              context.pop();
+                            }
+                            context.pushNamed('searchResultPage');
+                          },
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(

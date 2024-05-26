@@ -125,55 +125,60 @@ class _LogInWidgetState extends State<LogInWidget> {
                               children: [
                                 Container(
                                   width: 326.0,
-                                  height: 50.0,
+                                  height: 55.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
-                                  child: TextFormField(
-                                    controller:
-                                        _model.enterEmailTextTextController,
-                                    focusNode: _model.enterEmailTextFocusNode,
-                                    autofocus: true,
-                                    autofillHints: const [AutofillHints.email],
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      alignLabelWithHint: false,
-                                      hintText: 'Email',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 5.0, 0.0, 5.0),
+                                    child: TextFormField(
+                                      controller:
+                                          _model.enterEmailTextTextController,
+                                      focusNode: _model.enterEmailTextFocusNode,
+                                      autofocus: true,
+                                      autofillHints: const [AutofillHints.email],
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: false,
+                                        hintText: 'Email',
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .override(
+                                              fontFamily: 'DM Sans',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        focusedErrorBorder: InputBorder.none,
+                                        contentPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 11.0, 0.0, 0.0),
+                                        prefixIcon: Icon(
+                                          Icons.mail_outline_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
                                           .override(
                                             fontFamily: 'DM Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
                                           ),
-                                      enabledBorder: InputBorder.none,
-                                      focusedBorder: InputBorder.none,
-                                      errorBorder: InputBorder.none,
-                                      focusedErrorBorder: InputBorder.none,
-                                      contentPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 14.0, 0.0, 0.0),
-                                      prefixIcon: Icon(
-                                        Icons.mail_outline_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        size: 20.0,
-                                      ),
+                                      keyboardType: TextInputType.emailAddress,
+                                      validator: _model
+                                          .enterEmailTextTextControllerValidator
+                                          .asValidator(context),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'DM Sans',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    keyboardType: TextInputType.emailAddress,
-                                    validator: _model
-                                        .enterEmailTextTextControllerValidator
-                                        .asValidator(context),
                                   ),
                                 ),
                                 Padding(
@@ -181,7 +186,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Container(
                                     width: 326.0,
-                                    height: 50.0,
+                                    height: 55.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
@@ -189,7 +194,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 5.0, 0.0),
+                                          0.0, 5.0, 5.0, 5.0),
                                       child: TextFormField(
                                         controller: _model
                                             .enterPasswordTextTextController,
@@ -217,7 +222,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           focusedErrorBorder: InputBorder.none,
                                           contentPadding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 14.0, 0.0, 0.0),
+                                                  0.0, 11.0, 0.0, 0.0),
                                           prefixIcon: Icon(
                                             Icons.lock_outlined,
                                             color: FlutterFlowTheme.of(context)
