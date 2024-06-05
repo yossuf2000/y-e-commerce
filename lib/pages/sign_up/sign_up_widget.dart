@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -340,6 +341,22 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               .validate()) {
                                         return;
                                       }
+                                      GoRouter.of(context).prepareAuthEvent();
+
+                                      final user = await authManager
+                                          .createAccountWithEmail(
+                                        context,
+                                        _model
+                                            .enterEmailTextTextController.text,
+                                        _model.enterPasswordTextTextController
+                                            .text,
+                                      );
+                                      if (user == null) {
+                                        return;
+                                      }
+
+                                      context.goNamedAuth(
+                                          'HomePage', context.mounted);
                                     },
                                     text: 'Sign Up',
                                     options: FFButtonOptions(

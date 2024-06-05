@@ -5,7 +5,18 @@ import 'add_componant_v_model.dart';
 export 'add_componant_v_model.dart';
 
 class AddComponantVWidget extends StatefulWidget {
-  const AddComponantVWidget({super.key});
+  const AddComponantVWidget({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.productId,
+  });
+
+  final String? imageUrl;
+  final String? title;
+  final int? price;
+  final int? productId;
 
   @override
   State<AddComponantVWidget> createState() => _AddComponantVWidgetState();
@@ -37,62 +48,87 @@ class _AddComponantVWidgetState extends State<AddComponantVWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(7.5, 10.0, 7.5, 10.0),
-      child: Container(
-        width: 145.0,
-        height: 190.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBackground,
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 4.0,
-              color: Color(0x33000000),
-              offset: Offset(
-                1.0,
-                1.0,
+      child: InkWell(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: () async {
+          context.pushNamed(
+            'ProductPage',
+            queryParameters: {
+              'productID': serializeParam(
+                widget.productId,
+                ParamType.int,
               ),
-            )
-          ],
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 10.0, 15.0, 0.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/image_5.png',
-                  width: 125.0,
-                  height: 125.0,
-                  fit: BoxFit.cover,
+            }.withoutNulls,
+          );
+        },
+        child: Container(
+          width: 150.0,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).primaryBackground,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 4.0,
+                color: Color(0x33000000),
+                offset: Offset(
+                  1.0,
+                  1.0,
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-              child: Text(
-                'TMA-2 HD Wireless',
-                style: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily: 'DM Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      letterSpacing: 0.0,
+              )
+            ],
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      widget.imageUrl!,
+                      width: 125.0,
+                      height: 125.0,
+                      fit: BoxFit.contain,
                     ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(11.0, 5.0, 0.0, 0.0),
-              child: Text(
-                'USD 350',
-                style: FlutterFlowTheme.of(context).labelLarge.override(
-                      fontFamily: 'DM Sans',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      letterSpacing: 0.0,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  child: Text(
+                    valueOrDefault<String>(
+                      widget.title,
+                      'title',
                     ),
-              ),
+                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                          fontFamily: 'DM Sans',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 20.0),
+                    child: Text(
+                      'USD ${widget.price?.toString()}',
+                      style: FlutterFlowTheme.of(context).labelLarge.override(
+                            fontFamily: 'DM Sans',
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

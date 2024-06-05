@@ -200,7 +200,7 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          30.0, 10.0, 30.0, 0.0),
+                                          30.0, 0.0, 30.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:

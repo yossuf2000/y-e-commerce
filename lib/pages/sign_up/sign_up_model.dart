@@ -18,9 +18,6 @@ class SignUpModel extends FlutterFlowModel<SignUpWidget> {
       return 'Field is required';
     }
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
-    }
     return null;
   }
 

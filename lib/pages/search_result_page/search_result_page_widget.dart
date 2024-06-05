@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/componants/add_componant_v/add_componant_v_widget.dart';
 import '/componants/filters_componant/filters_componant_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -53,7 +54,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 500.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 300.0, 0.0, 0.0),
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
@@ -240,48 +241,81 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 25.0, 0.0, 0.0),
-                                    child: Wrap(
-                                      spacing: 20.0,
-                                      runSpacing: 10.0,
-                                      alignment: WrapAlignment.start,
-                                      crossAxisAlignment:
-                                          WrapCrossAlignment.start,
-                                      direction: Axis.horizontal,
-                                      runAlignment: WrapAlignment.start,
-                                      verticalDirection: VerticalDirection.down,
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed('ProductPage');
-                                          },
-                                          child: wrapWithModel(
-                                            model: _model.addComponantVModel1,
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: const AddComponantVWidget(),
-                                          ),
-                                        ),
-                                        wrapWithModel(
-                                          model: _model.addComponantVModel2,
-                                          updateCallback: () => setState(() {}),
-                                          child: const AddComponantVWidget(),
-                                        ),
-                                        wrapWithModel(
-                                          model: _model.addComponantVModel3,
-                                          updateCallback: () => setState(() {}),
-                                          child: const AddComponantVWidget(),
-                                        ),
-                                        wrapWithModel(
-                                          model: _model.addComponantVModel4,
-                                          updateCallback: () => setState(() {}),
-                                          child: const AddComponantVWidget(),
-                                        ),
-                                      ],
+                                    child: FutureBuilder<List<ProductsRow>>(
+                                      future: ProductsTable().queryRows(
+                                        queryFn: (q) => q
+                                            .eq(
+                                              'featured_product',
+                                              true,
+                                            )
+                                            .order('created_at'),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              child: CircularProgressIndicator(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<ProductsRow> wrapProductsRowList =
+                                            snapshot.data!;
+                                        return Wrap(
+                                          spacing: 20.0,
+                                          runSpacing: 10.0,
+                                          alignment: WrapAlignment.start,
+                                          crossAxisAlignment:
+                                              WrapCrossAlignment.start,
+                                          direction: Axis.horizontal,
+                                          runAlignment: WrapAlignment.start,
+                                          verticalDirection:
+                                              VerticalDirection.down,
+                                          clipBehavior: Clip.none,
+                                          children: List.generate(
+                                              wrapProductsRowList.length,
+                                              (wrapIndex) {
+                                            final wrapProductsRow =
+                                                wrapProductsRowList[wrapIndex];
+                                            return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'ProductPage',
+                                                  queryParameters: {
+                                                    'productID': serializeParam(
+                                                      wrapProductsRow.id,
+                                                      ParamType.int,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: AddComponantVWidget(
+                                                key: Key(
+                                                    'Keyzju_${wrapIndex}_of_${wrapProductsRowList.length}'),
+                                                imageUrl:
+                                                    wrapProductsRow.imageUrl,
+                                                title: wrapProductsRow.name,
+                                                price: wrapProductsRow.price,
+                                                productId: wrapProductsRow.id,
+                                              ),
+                                            );
+                                          }),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],

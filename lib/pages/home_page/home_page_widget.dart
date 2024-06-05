@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/componants/add_componant/add_componant_widget.dart';
 import '/componants/add_componant_v/add_componant_v_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
@@ -462,31 +463,59 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           15.0, 0.0, 0.0, 0.0),
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            wrapWithModel(
-                                              model: _model.addComponantVModel1,
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: const AddComponantVWidget(),
-                                            ),
-                                            wrapWithModel(
-                                              model: _model.addComponantVModel2,
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: const AddComponantVWidget(),
-                                            ),
-                                            wrapWithModel(
-                                              model: _model.addComponantVModel3,
-                                              updateCallback: () =>
-                                                  setState(() {}),
-                                              child: const AddComponantVWidget(),
-                                            ),
-                                          ],
+                                      child: FutureBuilder<List<ProductsRow>>(
+                                        future: ProductsTable().queryRows(
+                                          queryFn: (q) => q
+                                              .eq(
+                                                'featured_product',
+                                                true,
+                                              )
+                                              .order('created_at'),
                                         ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<ProductsRow> rowProductsRowList =
+                                              snapshot.data!;
+                                          return SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: List.generate(
+                                                  rowProductsRowList.length,
+                                                  (rowIndex) {
+                                                final rowProductsRow =
+                                                    rowProductsRowList[
+                                                        rowIndex];
+                                                return AddComponantVWidget(
+                                                  key: Key(
+                                                      'Keybwp_${rowIndex}_of_${rowProductsRowList.length}'),
+                                                  imageUrl:
+                                                      rowProductsRow.imageUrl,
+                                                  title: rowProductsRow.name,
+                                                  price: rowProductsRow.price,
+                                                  productId: rowProductsRow.id,
+                                                );
+                                              }),
+                                            ),
+                                          );
+                                        },
                                       ),
                                     ),
                                   ],

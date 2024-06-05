@@ -5,7 +5,20 @@ import 'h_product_componant_model.dart';
 export 'h_product_componant_model.dart';
 
 class HProductComponantWidget extends StatefulWidget {
-  const HProductComponantWidget({super.key});
+  const HProductComponantWidget({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.reviewScore,
+    required this.noOfReviews,
+  });
+
+  final String? imageUrl;
+  final String? title;
+  final int? price;
+  final double? reviewScore;
+  final int? noOfReviews;
 
   @override
   State<HProductComponantWidget> createState() =>
@@ -54,8 +67,8 @@ class _HProductComponantWidgetState extends State<HProductComponantWidget> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/image_5.png',
+                child: Image.network(
+                  widget.imageUrl!,
                   width: 300.0,
                   height: 200.0,
                   fit: BoxFit.contain,
@@ -70,7 +83,10 @@ class _HProductComponantWidgetState extends State<HProductComponantWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'TMA-2 Comfort Wireless ',
+                      valueOrDefault<String>(
+                        widget.title,
+                        'title',
+                      ),
                       style: FlutterFlowTheme.of(context).titleLarge.override(
                             fontFamily: 'DM Sans',
                             fontSize: 18.0,
@@ -81,7 +97,7 @@ class _HProductComponantWidgetState extends State<HProductComponantWidget> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
-                        'USD 270',
+                        'USD ${widget.price?.toString()}',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Readex Pro',
                               fontSize: 16.0,
@@ -98,30 +114,21 @@ class _HProductComponantWidgetState extends State<HProductComponantWidget> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Icon(
-                              Icons.star_rounded,
-                              color: FlutterFlowTheme.of(context).accent1,
-                              size: 20.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  3.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                '4.6',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      letterSpacing: 0.0,
-                                    ),
+                            if (widget.noOfReviews != 0)
+                              Icon(
+                                Icons.star_rounded,
+                                color: FlutterFlowTheme.of(context).accent1,
+                                size: 20.0,
                               ),
-                            ),
-                            Expanded(
-                              child: Padding(
+                            if (widget.noOfReviews != 0)
+                              Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
+                                    3.0, 0.0, 12.0, 0.0),
                                 child: Text(
-                                  '86 Reviews',
+                                  valueOrDefault<String>(
+                                    widget.reviewScore?.toString(),
+                                    '1',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -130,14 +137,17 @@ class _HProductComponantWidgetState extends State<HProductComponantWidget> {
                                       ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 20.0, 0.0),
-                              child: Icon(
-                                Icons.more_vert,
-                                color: FlutterFlowTheme.of(context).tertiary,
-                                size: 24.0,
+                            Expanded(
+                              child: Text(
+                                widget.noOfReviews == 0
+                                    ? 'No reviews yet'
+                                    : '${widget.noOfReviews?.toString()} Reviews',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                             ),
                           ],

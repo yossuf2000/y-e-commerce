@@ -1,4 +1,3 @@
-import '/componants/h_product_componant/h_product_componant_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'search_page_widget.dart' show SearchPageWidget;
 import 'package:flutter/material.dart';
@@ -12,21 +11,14 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   TextEditingController? enterEmailTextTextController;
   String? Function(BuildContext, String?)?
       enterEmailTextTextControllerValidator;
-  // Model for hProductComponant component.
-  late HProductComponantModel hProductComponantModel;
 
   @override
-  void initState(BuildContext context) {
-    hProductComponantModel =
-        createModel(context, () => HProductComponantModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
     enterEmailTextFocusNode?.dispose();
     enterEmailTextTextController?.dispose();
-
-    hProductComponantModel.dispose();
   }
 }

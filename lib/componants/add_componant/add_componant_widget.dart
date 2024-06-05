@@ -61,17 +61,24 @@ class _AddComponantWidgetState extends State<AddComponantWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(30.0, 25.0, 0.0, 25.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: Text(
-                      'TMA-2\nModular\nHeadphone',
-                      textAlign: TextAlign.start,
-                      style:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Montserrat',
-                                letterSpacing: 0.0,
-                              ),
+                    child: Container(
+                      width: 150.0,
+                      height: double.infinity,
+                      decoration: const BoxDecoration(),
+                      child: Text(
+                        'TMA-2 Modular Headphone',
+                        textAlign: TextAlign.start,
+                        style: FlutterFlowTheme.of(context)
+                            .headlineMedium
+                            .override(
+                              fontFamily: 'Montserrat',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
                     ),
                   ),
                   Row(

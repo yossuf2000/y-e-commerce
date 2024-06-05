@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/componants/h_product_componant/h_product_componant_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -271,7 +272,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Expanded(
+                    Flexible(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -289,22 +290,74 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 25.0, 0.0, 0.0),
-                            child: ListView(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    wrapWithModel(
-                                      model: _model.hProductComponantModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: const HProductComponantWidget(),
-                                    ),
-                                  ],
+                            child: FutureBuilder<List<ProductsRow>>(
+                              future: ProductsTable().queryRows(
+                                queryFn: (q) => q.eq(
+                                  'featured_product',
+                                  true,
                                 ),
-                              ],
+                                limit: 5,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ProductsRow> listViewProductsRowList =
+                                    snapshot.data!;
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: listViewProductsRowList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewProductsRow =
+                                        listViewProductsRowList[listViewIndex];
+                                    return InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (Navigator.of(context).canPop()) {
+                                          context.pop();
+                                        }
+                                        context.pushNamed(
+                                          'ProductPage',
+                                          queryParameters: {
+                                            'productID': serializeParam(
+                                              listViewProductsRow.id,
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                        );
+                                      },
+                                      child: HProductComponantWidget(
+                                        key: Key(
+                                            'Keyc3a_${listViewIndex}_of_${listViewProductsRowList.length}'),
+                                        imageUrl: listViewProductsRow.imageUrl,
+                                        title: listViewProductsRow.name,
+                                        price: listViewProductsRow.price,
+                                        reviewScore:
+                                            listViewProductsRow.reviewScore,
+                                        noOfReviews:
+                                            listViewProductsRow.noOfReviews,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             ),
                           ),
                         ],
