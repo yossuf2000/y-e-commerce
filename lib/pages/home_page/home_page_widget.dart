@@ -1,5 +1,5 @@
-import '/components/add_componant_v_widget.dart';
-import '/components/add_componant_widget.dart';
+import '/componants/add_componant/add_componant_widget.dart';
+import '/componants/add_componant_v/add_componant_v_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';

@@ -1,4 +1,4 @@
-import '/components/button_chips_componant_widget.dart';
+import '/componants/button_chips_componant/button_chips_componant_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'filters_componant_widget.dart' show FiltersComponantWidget;

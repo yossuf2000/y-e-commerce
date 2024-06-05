@@ -1,4 +1,4 @@
-import '/components/h_product_componant_widget.dart';
+import '/componants/h_product_componant/h_product_componant_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +123,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                             if (Navigator.of(context).canPop()) {
                               context.pop();
                             }
-                            context.pushNamed('searchResultPage');
+                            context.pushNamed('SearchResultPage');
                           },
                           autofocus: true,
                           obscureText: false,

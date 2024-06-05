@@ -1,4 +1,4 @@
-import '/components/button_chips_componant_widget.dart';
+import '/componants/button_chips_componant/button_chips_componant_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -412,7 +412,7 @@ class _FiltersComponantWidgetState extends State<FiltersComponantWidget> {
                       },
                       text: 'Apply Filter',
                       options: FFButtonOptions(
-                        height: 40.0,
+                        height: 45.0,
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:

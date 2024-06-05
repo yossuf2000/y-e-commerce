@@ -29,12 +29,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const LogInWidget(),
+      errorBuilder: (context, state) => const HomePageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const LogInWidget(),
+          builder: (context, _) => const HomePageWidget(),
         ),
         FFRoute(
           name: 'LogIn',
@@ -57,9 +57,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const SearchPageWidget(),
         ),
         FFRoute(
-          name: 'searchResultPage',
+          name: 'SearchResultPage',
           path: '/searchResultPage',
           builder: (context, params) => const SearchResultPageWidget(),
+        ),
+        FFRoute(
+          name: 'ProductPage',
+          path: '/productPage',
+          builder: (context, params) => const ProductPageWidget(),
+        ),
+        FFRoute(
+          name: 'CartPage',
+          path: '/cartPage',
+          builder: (context, params) => const CartPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

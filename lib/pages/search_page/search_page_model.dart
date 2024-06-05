@@ -1,4 +1,4 @@
-import '/components/h_product_componant_widget.dart';
+import '/componants/h_product_componant/h_product_componant_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'search_page_widget.dart' show SearchPageWidget;
 import 'package:flutter/material.dart';

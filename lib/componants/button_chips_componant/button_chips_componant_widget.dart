@@ -52,9 +52,8 @@ class _ButtonChipsComponantWidgetState
         children: [
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'Popularity';
-              });
+              _model.choice = 'Popularity';
+              setState(() {});
             },
             text: 'Popularity',
             options: FFButtonOptions(
@@ -84,9 +83,8 @@ class _ButtonChipsComponantWidgetState
           ),
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'Newest';
-              });
+              _model.choice = 'Newest';
+              setState(() {});
             },
             text: 'Newest',
             options: FFButtonOptions(
@@ -116,9 +114,8 @@ class _ButtonChipsComponantWidgetState
           ),
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'Oldest';
-              });
+              _model.choice = 'Oldest';
+              setState(() {});
             },
             text: 'Oldest',
             options: FFButtonOptions(
@@ -148,9 +145,8 @@ class _ButtonChipsComponantWidgetState
           ),
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'High Price';
-              });
+              _model.choice = 'High Price';
+              setState(() {});
             },
             text: 'High Price',
             options: FFButtonOptions(
@@ -180,9 +176,8 @@ class _ButtonChipsComponantWidgetState
           ),
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'Low Price';
-              });
+              _model.choice = 'Low Price';
+              setState(() {});
             },
             text: 'Low Price',
             options: FFButtonOptions(
@@ -212,9 +207,8 @@ class _ButtonChipsComponantWidgetState
           ),
           FFButtonWidget(
             onPressed: () async {
-              setState(() {
-                _model.choice = 'Review';
-              });
+              _model.choice = 'Review';
+              setState(() {});
             },
             text: 'Review',
             options: FFButtonOptions(

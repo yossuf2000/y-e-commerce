@@ -1,5 +1,5 @@
-import '/components/add_componant_v_widget.dart';
-import '/components/add_componant_widget.dart';
+import '/componants/add_componant/add_componant_widget.dart';
+import '/componants/add_componant_v/add_componant_v_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'home_page_widget.dart' show HomePageWidget;

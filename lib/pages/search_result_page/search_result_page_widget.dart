@@ -1,5 +1,5 @@
-import '/components/add_componant_v_widget.dart';
-import '/components/filters_componant_widget.dart';
+import '/componants/add_componant_v/add_componant_v_widget.dart';
+import '/componants/filters_componant/filters_componant_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -173,7 +173,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
                                         child: const SizedBox(
-                                          height: 563.0,
+                                          height: 573.0,
                                           child: FiltersComponantWidget(),
                                         ),
                                       ),
@@ -211,6 +211,7 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
+                              showLoadingIndicator: false,
                             ),
                           ),
                         ],
@@ -250,10 +251,20 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                       verticalDirection: VerticalDirection.down,
                                       clipBehavior: Clip.none,
                                       children: [
-                                        wrapWithModel(
-                                          model: _model.addComponantVModel1,
-                                          updateCallback: () => setState(() {}),
-                                          child: const AddComponantVWidget(),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed('ProductPage');
+                                          },
+                                          child: wrapWithModel(
+                                            model: _model.addComponantVModel1,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: const AddComponantVWidget(),
+                                          ),
                                         ),
                                         wrapWithModel(
                                           model: _model.addComponantVModel2,
