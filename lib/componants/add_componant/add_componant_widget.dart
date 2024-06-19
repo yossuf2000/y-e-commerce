@@ -5,7 +5,16 @@ import 'add_componant_model.dart';
 export 'add_componant_model.dart';
 
 class AddComponantWidget extends StatefulWidget {
-  const AddComponantWidget({super.key});
+  const AddComponantWidget({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.productId,
+  });
+
+  final String? name;
+  final String? image;
+  final int? productId;
 
   @override
   State<AddComponantWidget> createState() => _AddComponantWidgetState();
@@ -70,7 +79,10 @@ class _AddComponantWidgetState extends State<AddComponantWidget> {
                       height: double.infinity,
                       decoration: const BoxDecoration(),
                       child: Text(
-                        'TMA-2 Modular Headphone',
+                        valueOrDefault<String>(
+                          widget.name,
+                          'Title',
+                        ),
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
@@ -111,8 +123,8 @@ class _AddComponantWidgetState extends State<AddComponantWidget> {
             ),
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                'assets/images/image_5.png',
+              child: Image.network(
+                widget.image!,
                 width: 117.0,
                 height: 135.0,
                 fit: BoxFit.cover,

@@ -6,11 +6,10 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for enterEmailText widget.
-  FocusNode? enterEmailTextFocusNode;
-  TextEditingController? enterEmailTextTextController;
-  String? Function(BuildContext, String?)?
-      enterEmailTextTextControllerValidator;
+  // State field(s) for searchText widget.
+  FocusNode? searchTextFocusNode;
+  TextEditingController? searchTextTextController;
+  String? Function(BuildContext, String?)? searchTextTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -18,7 +17,7 @@ class SearchPageModel extends FlutterFlowModel<SearchPageWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    enterEmailTextFocusNode?.dispose();
-    enterEmailTextTextController?.dispose();
+    searchTextFocusNode?.dispose();
+    searchTextTextController?.dispose();
   }
 }

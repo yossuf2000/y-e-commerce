@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class ProductPageModel extends FlutterFlowModel<ProductPageWidget> {
   ///  Local state fields for this page.
 
-  List<String> images = [];
-  void addToImages(String item) => images.add(item);
-  void removeFromImages(String item) => images.remove(item);
-  void removeAtIndexFromImages(int index) => images.removeAt(index);
-  void insertAtIndexInImages(int index, String item) =>
-      images.insert(index, item);
-  void updateImagesAtIndex(int index, Function(String) updateFn) =>
-      images[index] = updateFn(images[index]);
+  List<int> cartElements = [];
+  void addToCartElements(int item) => cartElements.add(item);
+  void removeFromCartElements(int item) => cartElements.remove(item);
+  void removeAtIndexFromCartElements(int index) => cartElements.removeAt(index);
+  void insertAtIndexInCartElements(int index, int item) =>
+      cartElements.insert(index, item);
+  void updateCartElementsAtIndex(int index, Function(int) updateFn) =>
+      cartElements[index] = updateFn(cartElements[index]);
 
   ///  State fields for stateful widgets in this page.
 

@@ -24,8 +24,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
     super.initState();
     _model = createModel(context, () => SearchPageModel());
 
-    _model.enterEmailTextTextController ??= TextEditingController();
-    _model.enterEmailTextFocusNode ??= FocusNode();
+    _model.searchTextTextController ??= TextEditingController();
+    _model.searchTextFocusNode ??= FocusNode();
   }
 
   @override
@@ -46,175 +46,211 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 25.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.safePop();
-                      },
-                      child: Icon(
-                        Icons.chevron_left,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 28.0,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 25.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.safePop();
+                        },
+                        child: Icon(
+                          Icons.chevron_left,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 28.0,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Search',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Search',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'DM Sans',
+                                      fontSize: 19.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      FaIcon(
+                        FontAwesomeIcons.shoppingCart,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        child: Container(
+                          width: 326.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: TextFormField(
+                            controller: _model.searchTextTextController,
+                            focusNode: _model.searchTextFocusNode,
+                            onFieldSubmitted: (_) async {
+                              if (Navigator.of(context).canPop()) {
+                                context.pop();
+                              }
+                              context.pushNamed(
+                                'SearchResultPage',
+                                queryParameters: {
+                                  'searchText': serializeParam(
+                                    _model.searchTextTextController.text,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              alignLabelWithHint: false,
+                              hintText: 'Search for headphone',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
                                   .override(
                                     fontFamily: 'DM Sans',
-                                    fontSize: 19.0,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    FaIcon(
-                      FontAwesomeIcons.shoppingCart,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                      child: Container(
-                        width: 326.0,
-                        height: 50.0,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: TextFormField(
-                          controller: _model.enterEmailTextTextController,
-                          focusNode: _model.enterEmailTextFocusNode,
-                          onFieldSubmitted: (_) async {
-                            if (Navigator.of(context).canPop()) {
-                              context.pop();
-                            }
-                            context.pushNamed('SearchResultPage');
-                          },
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            alignLabelWithHint: false,
-                            hintText: 'Search for headphone',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'DM Sans',
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
+                                  width: 2.0,
                                 ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 14.0, 0.0, 0.0),
+                              prefixIcon: Icon(
+                                Icons.search,
                                 color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
+                                size: 20.0,
                               ),
-                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 14.0, 0.0, 0.0),
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: FlutterFlowTheme.of(context).alternate,
-                              size: 20.0,
-                            ),
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                fontFamily: 'DM Sans',
-                                letterSpacing: 0.0,
-                              ),
-                          validator: _model
-                              .enterEmailTextTextControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Lastest search',
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
                                   fontFamily: 'DM Sans',
-                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
                                 ),
+                            validator: _model.searchTextTextControllerValidator
+                                .asValidator(context),
                           ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 10.0),
-                            child: Row(
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Lastest search',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'DM Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 10.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.watch_later_outlined,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    size: 24.0,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'TMA2 Wireless',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'DM Sans',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Icon(
@@ -226,7 +262,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'TMA2 Wireless',
+                                    'Cable',
                                     style: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .override(
@@ -237,136 +273,118 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                                 ),
                               ],
                             ),
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.watch_later_outlined,
-                                color: FlutterFlowTheme.of(context).alternate,
-                                size: 24.0,
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Cable',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        fontFamily: 'DM Sans',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 40.0, 20.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Flexible(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Popular product',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineSmall
-                                .override(
-                                  fontFamily: 'DM Sans',
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 40.0, 20.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Flexible(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Popular product',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'DM Sans',
+                                    fontSize: 18.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 25.0, 0.0, 0.0),
+                              child: FutureBuilder<List<ProductsRow>>(
+                                future: ProductsTable().queryRows(
+                                  queryFn: (q) => q.eq(
+                                    'featured_product',
+                                    true,
+                                  ),
+                                  limit: 5,
                                 ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 25.0, 0.0, 0.0),
-                            child: FutureBuilder<List<ProductsRow>>(
-                              future: ProductsTable().queryRows(
-                                queryFn: (q) => q.eq(
-                                  'featured_product',
-                                  true,
-                                ),
-                                limit: 5,
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                List<ProductsRow> listViewProductsRowList =
-                                    snapshot.data!;
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewProductsRowList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewProductsRow =
-                                        listViewProductsRowList[listViewIndex];
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        if (Navigator.of(context).canPop()) {
-                                          context.pop();
-                                        }
-                                        context.pushNamed(
-                                          'ProductPage',
-                                          queryParameters: {
-                                            'productID': serializeParam(
-                                              listViewProductsRow.id,
-                                              ParamType.int,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      },
-                                      child: HProductComponantWidget(
-                                        key: Key(
-                                            'Keyc3a_${listViewIndex}_of_${listViewProductsRowList.length}'),
-                                        imageUrl: listViewProductsRow.imageUrl,
-                                        title: listViewProductsRow.name,
-                                        price: listViewProductsRow.price,
-                                        reviewScore:
-                                            listViewProductsRow.reviewScore,
-                                        noOfReviews:
-                                            listViewProductsRow.noOfReviews,
-                                      ),
                                     );
-                                  },
-                                );
-                              },
+                                  }
+                                  List<ProductsRow> listViewProductsRowList =
+                                      snapshot.data!;
+                                  return ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: listViewProductsRowList.length,
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewProductsRow =
+                                          listViewProductsRowList[
+                                              listViewIndex];
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
+                                          context.pushNamed(
+                                            'ProductPage',
+                                            queryParameters: {
+                                              'productID': serializeParam(
+                                                listViewProductsRow.id,
+                                                ParamType.int,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: HProductComponantWidget(
+                                          key: Key(
+                                              'Keyc3a_${listViewIndex}_of_${listViewProductsRowList.length}'),
+                                          imageUrl:
+                                              listViewProductsRow.imageUrl,
+                                          title: listViewProductsRow.name,
+                                          price: listViewProductsRow.price,
+                                          reviewScore:
+                                              listViewProductsRow.reviewScore,
+                                          noOfReviews:
+                                              listViewProductsRow.noOfReviews,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

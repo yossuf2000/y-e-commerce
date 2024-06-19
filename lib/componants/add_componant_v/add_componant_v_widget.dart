@@ -66,6 +66,7 @@ class _AddComponantVWidgetState extends State<AddComponantVWidget> {
         },
         child: Container(
           width: 150.0,
+          height: 240.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
             boxShadow: const [

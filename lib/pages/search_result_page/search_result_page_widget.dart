@@ -10,7 +10,12 @@ import 'search_result_page_model.dart';
 export 'search_result_page_model.dart';
 
 class SearchResultPageWidget extends StatefulWidget {
-  const SearchResultPageWidget({super.key});
+  const SearchResultPageWidget({
+    super.key,
+    required this.searchText,
+  });
+
+  final String? searchText;
 
   @override
   State<SearchResultPageWidget> createState() => _SearchResultPageWidgetState();
@@ -139,7 +144,10 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 7.0, 0.0, 0.0),
                                     child: Text(
-                                      'TMA Wireless',
+                                      valueOrDefault<String>(
+                                        widget.searchText,
+                                        'Search text',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .headlineLarge
                                           .override(

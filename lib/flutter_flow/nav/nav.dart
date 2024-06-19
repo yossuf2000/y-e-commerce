@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '/backend/schema/structs/index.dart';
+
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -104,7 +106,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SearchResultPage',
           path: '/searchResultPage',
-          builder: (context, params) => const SearchResultPageWidget(),
+          builder: (context, params) => SearchResultPageWidget(
+            searchText: params.getParam(
+              'searchText',
+              ParamType.String,
+            ),
+          ),
         ),
         FFRoute(
           name: 'ProductPage',
@@ -238,6 +245,7 @@ class FFParameters {
     String paramName,
     ParamType type, {
     bool isList = false,
+    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -255,6 +263,7 @@ class FFParameters {
       param,
       type,
       isList,
+      structBuilder: structBuilder,
     );
   }
 }

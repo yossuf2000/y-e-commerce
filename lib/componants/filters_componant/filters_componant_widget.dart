@@ -407,8 +407,8 @@ class _FiltersComponantWidgetState extends State<FiltersComponantWidget> {
                 children: [
                   Expanded(
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        Navigator.pop(context);
                       },
                       text: 'Apply Filter',
                       options: FFButtonOptions(
