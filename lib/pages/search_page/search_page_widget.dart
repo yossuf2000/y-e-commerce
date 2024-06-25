@@ -94,10 +94,19 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                           ),
                         ),
                       ),
-                      FaIcon(
-                        FontAwesomeIcons.shoppingCart,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed('CartPage');
+                        },
+                        child: FaIcon(
+                          FontAwesomeIcons.shoppingCart,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
                       ),
                     ],
                   ),

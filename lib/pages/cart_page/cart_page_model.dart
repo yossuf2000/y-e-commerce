@@ -41,6 +41,8 @@ class CartPageModel extends FlutterFlowModel<CartPageWidget> {
   ApiCallResponse? apiResult3jaa;
   // Stores action output result for [Backend Call - Query Rows] action in cartItemComponant widget.
   List<UsersRow>? myUser2;
+  // Stores action output result for [Backend Call - API (creatStripeCheckOutLink)] action in Container widget.
+  ApiCallResponse? stripeApiOutput;
 
   @override
   void initState(BuildContext context) {}

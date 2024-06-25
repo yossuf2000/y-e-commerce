@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
+import '/componants/empty_wedgit/empty_wedgit_widget.dart';
 import '/components/cart_item_componant_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -223,6 +224,12 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                               .unique((e) => e)
                                               .toList() ??
                                           [];
+                                      if (cartItems.isEmpty) {
+                                        return const SizedBox(
+                                          height: 500.0,
+                                          child: EmptyWedgitWidget(),
+                                        );
+                                      }
                                       return SingleChildScrollView(
                                         primary: false,
                                         child: Column(
@@ -326,49 +333,101 @@ class _CartPageWidgetState extends State<CartPageWidget> {
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        height: 50.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  30.0, 0.0, 30.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  'Proceed to Checkout',
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.stripeApiOutput =
+                                              await CreatStripeCheckOutLinkCall
+                                                  .call(
+                                            price: _model.totalPrice * 100,
+                                          );
+
+                                          if ((_model
+                                                  .stripeApiOutput?.succeeded ??
+                                              true)) {
+                                            await launchURL(
+                                                CreatStripeCheckOutLinkCall
+                                                    .stripeCheckOutLink(
+                                              (_model.stripeApiOutput
+                                                      ?.jsonBody ??
+                                                  ''),
+                                            )!);
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Payment Erorre',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .titleMedium
+                                                      .titleLarge
                                                       .override(
                                                         fontFamily: 'DM Sans',
-                                                        fontSize: 15.0,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
                                                         letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.bold,
                                                       ),
                                                 ),
-                                              ),
-                                              FaIcon(
-                                                FontAwesomeIcons.chevronRight,
-                                                color:
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
                                                     FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 20.0,
+                                                        .primaryBackground,
                                               ),
-                                            ],
+                                            );
+                                          }
+
+                                          setState(() {});
+                                        },
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    30.0, 0.0, 30.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    'Proceed to Checkout',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily: 'DM Sans',
+                                                          fontSize: 15.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                  ),
+                                                ),
+                                                FaIcon(
+                                                  FontAwesomeIcons.chevronRight,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 20.0,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),

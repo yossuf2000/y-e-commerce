@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -37,6 +38,38 @@ class UpdateTotalPriceCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class CreatStripeCheckOutLinkCall {
+  static Future<ApiCallResponse> call({
+    int? price,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "price": $price
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'creatStripeCheckOutLink',
+      apiUrl: 'https://3wlr05.buildship.run/create-checkout-link',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? stripeCheckOutLink(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.url''',
+      ));
 }
 
 class ApiPagingParams {

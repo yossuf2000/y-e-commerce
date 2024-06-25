@@ -2,10 +2,12 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/componants/add_componant/add_componant_widget.dart';
 import '/componants/add_componant_v/add_componant_v_widget.dart';
+import '/componants/user_drop_down/user_drop_down_widget.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_page_model.dart';
@@ -93,18 +95,53 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
-                              child: Container(
-                                width: 40.0,
-                                height: 40.0,
-                                clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Image.network(
-                                  homeContainerUsersRow!.profiePhoto!,
-                                  fit: BoxFit.cover,
+                            Builder(
+                              builder: (context) => InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await showAlignedDialog(
+                                    context: context,
+                                    isGlobal: false,
+                                    avoidOverflow: true,
+                                    targetAnchor: const AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    followerAnchor: const AlignmentDirectional(
+                                            0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    builder: (dialogContext) {
+                                      return Material(
+                                        color: Colors.transparent,
+                                        child: GestureDetector(
+                                          onTap: () => _model
+                                                  .unfocusNode.canRequestFocus
+                                              ? FocusScope.of(context)
+                                                  .requestFocus(
+                                                      _model.unfocusNode)
+                                              : FocusScope.of(context)
+                                                  .unfocus(),
+                                          child: const SizedBox(
+                                            height: 200.0,
+                                            child: UserDropDownWidget(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).then((value) => setState(() {}));
+                                },
+                                child: Container(
+                                  width: 40.0,
+                                  height: 40.0,
+                                  clipBehavior: Clip.antiAlias,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Image.network(
+                                    homeContainerUsersRow!.profiePhoto!,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
@@ -144,10 +181,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ),
                             ),
-                            FaIcon(
-                              FontAwesomeIcons.shoppingCart,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('CartPage');
+                              },
+                              child: FaIcon(
+                                FontAwesomeIcons.shoppingCart,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
                             ),
                           ],
                         ),
@@ -164,7 +210,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Hi, ${homeContainerUsersRow.userName}',
+                                  'Hi, ${homeContainerUsersRow?.userName}',
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .headlineSmall
@@ -472,14 +518,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   final rowProductsRow =
                                                       rowProductsRowList[
                                                           rowIndex];
-                                                  return AddComponantWidget(
-                                                    key: Key(
-                                                        'Keyge0_${rowIndex}_of_${rowProductsRowList.length}'),
-                                                    name: rowProductsRow.name,
-                                                    image:
-                                                        rowProductsRow.imageUrl,
-                                                    productId:
-                                                        rowProductsRow.id,
+                                                  return InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      context.pushNamed(
+                                                        'ProductPage',
+                                                        queryParameters: {
+                                                          'productID':
+                                                              serializeParam(
+                                                            rowProductsRow.id,
+                                                            ParamType.int,
+                                                          ),
+                                                        }.withoutNulls,
+                                                      );
+                                                    },
+                                                    child: AddComponantWidget(
+                                                      key: Key(
+                                                          'Keyge0_${rowIndex}_of_${rowProductsRowList.length}'),
+                                                      name: rowProductsRow.name,
+                                                      image: rowProductsRow
+                                                          .imageUrl,
+                                                      productId:
+                                                          rowProductsRow.id,
+                                                    ),
                                                   );
                                                 }),
                                               ),

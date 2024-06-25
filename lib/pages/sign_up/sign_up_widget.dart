@@ -411,66 +411,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 10.0, 0.0),
-                                  child: Container(
-                                    width: 52.0,
-                                    height: 52.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(9.4),
-                                    ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: const Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 2.0),
-                                      child: Icon(
-                                        Icons.apple_sharp,
-                                        color: Colors.black,
-                                        size: 32.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  child: Container(
-                                    width: 52.0,
-                                    height: 52.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(9.4),
-                                    ),
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: const Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 2.0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.facebookF,
-                                        color: Color(0xFF4267B2),
-                                        size: 32.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed('HomePage');
-                                    },
+                            if (false)
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 10.0, 0.0),
                                     child: Container(
                                       width: 52.0,
                                       height: 52.0,
@@ -481,53 +428,106 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             BorderRadius.circular(9.4),
                                       ),
                                       alignment: const AlignmentDirectional(0.0, 0.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.asset(
-                                          'assets/images/search.png',
-                                          width: 25.0,
-                                          height: 25.0,
-                                          fit: BoxFit.cover,
+                                      child: const Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 2.0),
+                                        child: Icon(
+                                          Icons.apple_sharp,
+                                          color: Colors.black,
+                                          size: 32.0,
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 27.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'Do you have an account?',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'DM Sans',
-                                          letterSpacing: 0.0,
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 10.0, 0.0),
+                                    child: Container(
+                                      width: 52.0,
+                                      height: 52.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(9.4),
+                                      ),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      child: const Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 2.0),
+                                        child: FaIcon(
+                                          FontAwesomeIcons.facebookF,
+                                          color: Color(0xFF4267B2),
+                                          size: 32.0,
                                         ),
+                                      ),
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        6.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Sign In here',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'DM Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            letterSpacing: 0.0,
+                                        10.0, 0.0, 0.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed('HomePage');
+                                      },
+                                      child: Container(
+                                        width: 52.0,
+                                        height: 52.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(9.4),
+                                        ),
+                                        alignment:
+                                            const AlignmentDirectional(0.0, 0.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.asset(
+                                            'assets/images/search.png',
+                                            width: 25.0,
+                                            height: 25.0,
+                                            fit: BoxFit.cover,
                                           ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
                               ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Do you have an account?',
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        fontFamily: 'DM Sans',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      6.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    'Sign In here',
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'DM Sans',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),

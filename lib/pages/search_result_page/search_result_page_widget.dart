@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'search_result_page_model.dart';
 export 'search_result_page_model.dart';
@@ -30,6 +31,11 @@ class _SearchResultPageWidgetState extends State<SearchResultPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SearchResultPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      context.pushNamed('CartPage');
+    });
   }
 
   @override

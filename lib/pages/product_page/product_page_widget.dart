@@ -731,7 +731,6 @@ class _ProductPageWidgetState extends State<ProductPageWidget>
                                         .cartProducts
                                         .toList()
                                         .cast<int>();
-                                    setState(() {});
                                     _model.addToCartElements(widget.productID!);
                                     await UsersTable().update(
                                       data: {
@@ -740,6 +739,26 @@ class _ProductPageWidgetState extends State<ProductPageWidget>
                                       matchingRows: (rows) => rows.eq(
                                         'id',
                                         currentUserUid,
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Product successfully added to your shopping cart',
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                fontFamily: 'DM Sans',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
                                       ),
                                     );
                                   },
